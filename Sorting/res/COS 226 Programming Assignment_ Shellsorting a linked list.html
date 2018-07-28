@@ -1,0 +1,153 @@
+
+<!-- saved from url=(0084)http://www.cs.princeton.edu/courses/archive/spring03/cs226/assignments/linksort.html -->
+<html class="gr__cs_princeton_edu"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COS 226 Programming Assignment: Shellsorting a linked list
+</title>
+</head>
+
+<body data-gr-c-s-loaded="true">
+<h3>COS 226 Programming Assignment</h3>
+<h2>Shellsorting a linked list</h2>
+
+Implement Sort for a linked list, based on a variant of bubble
+sort.
+<!-- Experiment with various increment sequences and submit the most
+effective one that you find.
+-->
+The rather severe constraints imposed by the singly-linked list
+organization presents special problems for implementing Sort.
+Your task is to overcome these constraints and develop a simple,
+elegant implementation that does not sacrifice efficiency or waste
+space.
+
+<p>
+
+<strong>Step 1.</strong>
+First, implement a routine to build a list: read integers from
+standard input, and build a list node for each item
+consisting of an integer key and a link to the node for the next
+item.  Also, write a routine to print out the contents of the linked
+list.
+</p><p>
+
+<strong>Step 2.</strong>
+Next, implement bubble sort: it should take as input a link to the
+beginning of a list, and should rearrange the nodes of the list so
+that they are in sorted order.  <em>This
+is not the same as rearranging keys within nodes</em>: that is to be
+avoided because, in real applications, other information might be
+associated with the keys, or other data structures might have pointers
+to the nodes.  You may use dummy nodes or circular lists as you see
+fit, but do <i>not</i> use doubly-linked lists. That is, you should use
+only one link per node, with a constant extra number of links for
+bookkeeping.
+
+</p><p>
+<strong>Step 3.</strong>
+Next, implement a bubble h-sort. You will need to discover an efficient way to do
+this, even for large h. Make sure that <em>one pass</em>
+of your bubble h-sort uses at most a <em>constant amount of 
+auxiliary space</em> and runs in <em>time linear in the input size N</em>.
+Note that h does not count as
+a constant - this is too much. However, in general, your bubble h-sort
+routine will still need more than a constant number of passes
+to produce a file that is h-sorted.
+You should think about how you are going to solve this problem before
+sitting down to write the code.
+
+</p><p>
+<strong>Step 4.</strong>
+Finally, write a Sort variant that uses your bubble h-sort.
+Use Knuth's increment sequence (1, 4, 13, 40, ...) as in Sedgewick, Program 6.5.
+<!-- 
+You may wish to debug with the keys <tt>A S O R T I N G E X A M P L E</tt>
+and compare with Figure 6.9.
+-->
+
+
+<!--
+<p>
+<strong>Step 5.</strong>
+The final problem that you need to solve for this assignment is to
+find an effective increment sequence for large N.  Here you need to
+mix an intuitive feel for what is needed with any creative (or
+half-baked) ideas that you might have, then design and execute some
+experiments to help in your search for some good sequences.
+<p>
+-->
+</p><p>
+
+<strong>Analysis.</strong>
+Use explicit counters to determine how many key comparisons
+and exchanges are used.
+Report these counts and the amount of time your program takes
+to sort random input files of size 100, 1,000, 10,000, 100,000 and 1,000,000.
+Include in your <tt>readme.txt</tt> a
+two-dimensional table with a row corresponding to each file size and 
+columns giving the total number of comparisons and exchanges used.
+Also, include a column that indicates how many seconds your program
+takes on each input.
+</p><p>
+
+</p><p>
+<strong>Input and output.</strong>
+The input consists of integers separated by whitespace. You may use the
+following
+<a href="ftp://ftp.cs.princeton.edu/pub/cs226/linksort">
+sample input files</a> to test your program.
+Your program should output the intermediate stages of the sort
+for debugging and to provide evidence that your program works.
+For example, 
+on the input file <a href="ftp://ftp.cs.princeton.edu/pub/cs226/linksort/random10.txt">
+<tt>random10.txt</tt></a>, your program should output:
+
+<font size="-1">
+</font></p><blockquote><pre><font size="-1">a.out &lt; random10.txt
+       h  pass       cmp      exch    18 79 46 75 99 91 98 53 10 23 
+----------------------------------
+       4     1                        10 23 46 53 18 79 98 75 99 91 
+       4     2        12         5    10 23 46 53 18 79 98 75 99 91 
+       1     1                        10 18 23 46 53 75 79 98 91 99 
+       1     2                        10 18 23 46 53 75 79 91 98 99 
+       1     3        27         7    10 18 23 46 53 75 79 91 98 99 
+----------------------------------
+   Total     5        39        12
+</font></pre></blockquote><font size="-1">
+</font>
+If <tt>N</tt> is larger than 20, for brevity
+only print out the number of comparisons and
+exchanges  for each value of <tt>h</tt>.
+<font size="-1">
+<blockquote><pre>a.out &lt; random100000.txt
+       h  pass       cmp      exch      
+----------------------------------
+   88573     2     22854      5722      
+   29524     4    281904     49788      
+    9841    10    901590     94555      
+    3280    16   1547520    148293      
+    1093    21   2077047    203626      
+     364    29   2889444    274828      
+     121    36   3595644    391385      
+      40    49   4898040    584519      
+      13    46   4599402    634147      
+       4    28   2799888    388543      
+       1    16   1599984    175669      
+----------------------------------
+   Total   257  25213317   2951075
+</pre></blockquote>
+</font>
+
+
+<em>Extra Credit A.</em>
+The method is much more effective if you alternate
+directions in passes through the list.  Make your program change the
+direction of all the links on the way through the list, so that it
+goes the other direction on the next pass. Find a good increment
+sequence for that variant.
+<p>
+<em>Extra Credit B.</em>
+Design an increment sequence that consistently outperforms the 
+sequences described in the text. Justify your method with
+numerical experiments.
+
+</p></body></html>
