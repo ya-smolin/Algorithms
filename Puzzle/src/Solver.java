@@ -4,7 +4,6 @@ import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Objects;
 
 public class Solver {
@@ -32,16 +31,17 @@ public class Solver {
      * Exactly one of the two will lead to the goal board.
      */
     public boolean isSolvable() {
-        Solver separateEqSolver = new Solver(initBoardNode.getBoard().twin());
-        return separateEqSolver.solution() == null;
+        //Solver separateEqSolver = new Solver(initBoardNode.getBoard().twin());
+        return solution() != null;
     }
 
     // min number of moves to solve initial board; -1 if unsolvable
     public int moves() {
-        if (!isSolvable()) return -1;
+        Iterable<Board> solutionMoves = solution();
+        if (solutionMoves == null) return -1;
         else {
-            Stack<Board> solutionMoves = (Stack<Board>) solution();
-            return solutionMoves.size();
+            Stack<Board> solutionMovesB = (Stack<Board>) solutionMoves;
+            return solutionMovesB.size() - 1;
         }
     }
 
@@ -49,7 +49,7 @@ public class Solver {
     public Iterable<Board> solution() {
         BoardNode lastBoardNode = null;
         if (solution == null) {
-            HashSet<Board> expendedBoards = new HashSet<>();
+            ArrayList<Board> expendedBoards = new ArrayList<>();
             while (!pq.isEmpty()) {
                 BoardNode curBoardNode = pq.delMin();
                 expendedBoards.add(curBoardNode.getBoard());
@@ -91,6 +91,8 @@ public class Solver {
         Board initial = new Board(blocks);
         // solve the puzzle
         Solver solver = new Solver(initial);
+        for (Board board : solver.solution())
+            StdOut.println(board);
         // print solution to standard output
         if (!solver.isSolvable())
             StdOut.println("No solution possible");
@@ -115,6 +117,14 @@ class BoardNode implements Comparable<BoardNode> {
         } else {
             movesNumber = prevBoard.getMovesNumber() + 1;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BoardNode boardNode = (BoardNode) o;
+        return Objects.equals(board, boardNode.board);
     }
 
     private int getMovesNumber() {

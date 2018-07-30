@@ -9,7 +9,6 @@ import java.util.Objects;
 public class Board {
     private int dim;
     private int[][] blocks;
-    private int hashCode = -1;
 
     // construct a board from an n-by-n array of blocks
     // (where blocks[i][j] = block in row i, column j)
@@ -44,7 +43,6 @@ public class Board {
             for (int j = 0; j < dim; j++) {
                 if(!isInPlace(i,j) && !isEmptyCell(i, j)){
                     manhattan += calculateLocalManhattan(i, j);
-                    System.out.println("{"+i +","+j+": "+manhattan+"}");
                 }
             }
         }
@@ -144,17 +142,6 @@ public class Board {
         return vertNeib;
     }
 
-    @Override
-    public int hashCode() {
-        if(hashCode == -1){
-            hashCode = Objects.hash(dim);
-            for (int i = 0; i < dim; i++) {
-                hashCode = 31*hashCode + Arrays.hashCode(blocks[i]);
-            }
-        }
-        return hashCode;
-    }
-
     private ArrayInd findValue(int value) {
         for (int i = 0; i < dim; i++) {
             for (int j = 0; j < dim; j++) {
@@ -197,9 +184,6 @@ public class Board {
         System.out.println("equals:" + board1.equals(board) + " " + Objects.equals(board, board1));
         System.out.println("Arrays equals:" + boardBlocks1.equals(boardBlocks));
         System.out.println("hashcode:" + board.hashCode() + " " + board1.hashCode());
-        HashSet<Board> boards = new HashSet<>();
-        boards.add(board);
-        System.out.println("contains:" + boards.contains(board1));
 
         System.out.println(board);
         //System.out.println(board.twin());
