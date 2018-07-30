@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Objects;
 
 /**
@@ -7,14 +9,13 @@ import java.util.Objects;
 public class Board {
     private int dim;
     private int[][] blocks;
-    private int movesNumber;
+    private int hashCode = -1;
 
     // construct a board from an n-by-n array of blocks
     // (where blocks[i][j] = block in row i, column j)
     public Board(int[][] blocks) {
         dim = (blocks != null) ? blocks[0].length : 0;
         this.blocks = blocks;
-        movesNumber = 0;
     }
 
     // board dimension n
@@ -30,7 +31,7 @@ public class Board {
                 if (!isEmptyCell(i, j) && !isInPlace(i, j)) hamming++;
             }
         }
-        return hamming + movesNumber;
+        return hamming;
     }
     private boolean isEmptyCell(int i, int j){
        return blocks[i][j]==0;
@@ -47,7 +48,7 @@ public class Board {
                 }
             }
         }
-        return manhattan + movesNumber;
+        return manhattan;
     }
 
     private int calculateLocalManhattan(int is, int js) {
@@ -67,7 +68,7 @@ public class Board {
 
     // is this board the goal board?
     public boolean isGoal() {
-        return hamming() - movesNumber == 0;
+        return hamming() == 0;
     }
 
     // a board that is obtained by exchanging any pair of blocks
@@ -143,6 +144,17 @@ public class Board {
         return vertNeib;
     }
 
+    @Override
+    public int hashCode() {
+        if(hashCode == -1){
+            hashCode = Objects.hash(dim);
+            for (int i = 0; i < dim; i++) {
+                hashCode = 31*hashCode + Arrays.hashCode(blocks[i]);
+            }
+        }
+        return hashCode;
+    }
+
     private ArrayInd findValue(int value) {
         for (int i = 0; i < dim; i++) {
             for (int j = 0; j < dim; j++) {
@@ -155,7 +167,7 @@ public class Board {
     // string representation of this board (in the output format specified below)
     public String toString() {
         StringBuilder s = new StringBuilder();
-        //s.append(dim + "\n");
+        s.append(dim + "\n");
         for (int i = 0; i < dim; i++) {
             for (int j = 0; j < dim; j++) {
                 s.append(String.format("%2d ", blocks[i][j]));
@@ -177,7 +189,18 @@ public class Board {
         int[][] boardBlocks = {{1, 0, 2},
                 {5, 4, 6},
                 {7, 8, 3}};
+        int[][] boardBlocks1 = {{1, 0, 2},
+                {5, 4, 6},
+                {7, 8, 3}};
         Board board = new Board(boardBlocks);
+        Board board1 = new Board(boardBlocks1);
+        System.out.println("equals:" + board1.equals(board) + " " + Objects.equals(board, board1));
+        System.out.println("Arrays equals:" + boardBlocks1.equals(boardBlocks));
+        System.out.println("hashcode:" + board.hashCode() + " " + board1.hashCode());
+        HashSet<Board> boards = new HashSet<>();
+        boards.add(board);
+        System.out.println("contains:" + boards.contains(board1));
+
         System.out.println(board);
         //System.out.println(board.twin());
         System.out.println("hamming:" + board.hamming());
