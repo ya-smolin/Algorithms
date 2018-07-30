@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9398f2e6-7b45-4d63-a4a0-c05dc0b1f69a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Percolation/Percolation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Percolation/Percolation.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Puzzle/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Puzzle/src/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Puzzle/src/Solver.java" beforeDir="false" afterPath="$PROJECT_DIR$/Puzzle/src/Solver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Puzzle/ArrayInd.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Puzzle/ArrayInd.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Puzzle/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Puzzle/Board.class" afterDir="false" />
     </list>
@@ -22,8 +18,8 @@
       <file leaf-file-name="Solver.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Puzzle/src/Solver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="53" column="34" lean-forward="true" selection-start-line="53" selection-start-column="34" selection-end-line="53" selection-end-column="34" />
+            <state relative-caret-position="2090">
+              <caret line="115" column="46" selection-start-line="115" selection-start-column="46" selection-end-line="115" selection-end-column="46" />
               <folding>
                 <element signature="docComment;method#isSolvable#0;class#Solver#0" />
               </folding>
@@ -320,6 +316,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.4984375" weight="0.37909186" />
@@ -605,8 +602,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Puzzle/src/Solver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="53" column="34" lean-forward="true" selection-start-line="53" selection-start-column="34" selection-end-line="53" selection-end-column="34" />
+        <state relative-caret-position="2090">
+          <caret line="115" column="46" selection-start-line="115" selection-start-column="46" selection-end-line="115" selection-end-column="46" />
           <folding>
             <element signature="docComment;method#isSolvable#0;class#Solver#0" />
           </folding>

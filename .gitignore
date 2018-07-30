@@ -1,2 +1,4 @@
 large*.txt
 /out/production/CollinearPoints/*.zip
+*.class
+*.zip
